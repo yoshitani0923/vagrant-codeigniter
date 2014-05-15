@@ -1,30 +1,32 @@
 <?php
-class tweet_model extends CI_Model {
+class tweet_model extends CI_Model
+{
 
-	public function __construct(){
+	public function __construct()
+    {
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->helper('date');
+        $this->load->helper('array');
+        $this->load->library('session');//使ってないやつ書かない！！
 	}
 
 
-	public function tweet($containt){
-		$data = array('containt' => $containt, 'username' => 'aaa');
-var_dump($data);
-        $this->db->insert('TWEET', $data);
+	public function news($user_id)
+    {
+    	$this->db->select('tweet, register_date');
+        $this->db->where('user_id', $user_id);
+        $this->db->order_by("id", "desc"); 
+        $this->db->limit(10);
+        $query = $this->db->get('tweet');
+        return $query->result_array();
+	}
 
-        $username = 'aaa';
-
-        $this->db->select("containt, username");
-        $this->db->where('containt', $containt);
-        $this->db->where('username', $username);
-        $query = $this->db->get('TWEET');
-        return $query -> result_array();
-var_dump($query->result_array());
-
-    }
-
+	public function sounyu($tweet)
+    {
+		return $this->db->insert('tweet', $tweet);
+	}
 }

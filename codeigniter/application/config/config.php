@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'MUST set an encryption key.';
 
 /*
 |--------------------------------------------------------------------------
@@ -253,6 +253,7 @@ $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
+$config['encryption_key'] = 'key';
 
 /*
 |--------------------------------------------------------------------------
@@ -356,6 +357,8 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
+
+$config['csrf_protection'] = TRUE;
 
 
 /* End of file config.php */

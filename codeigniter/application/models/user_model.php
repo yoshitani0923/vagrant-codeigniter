@@ -1,41 +1,52 @@
 <?php
-class User_model extends CI_Model {
-
+class user_model extends CI_Model
+{
 	public function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
 	}
 
-
-
-//データベースからデータゲット
-	public function get_news($slug = FALSE)
+    //データベースに書き込み
+	public function set_news($data)
 	{
-	if ($slug === FALSE)
-	{
-		$query = $this->db->get('news');
-		return $query->result_array();
+		$this->db->set('username', $data['username']);
+		$this->db->set('email', $data['email']);
+		$this->db->set('password', $data['password']);
+		$this->db->set('register_date', $data['register_date']);
+	    $this->db->insert('user');
+	    return;
 	}
 
-	$query = $this->db->get_where('news', array('slug' => $slug));
-	return $query->row_array();
+    //ログイン機能
+    public function login($email)
+    {
+	   // return $query->row_array();
+        $this->db->select("username, password, user_id");
+        $this->db->where('email', $email);
+        //$this->db->where('password', $password);
+        $query = $this->db->get('user');
+        return $query->row();
+        //var_dump($query->num_rows(), $query->result_array());exit;
+    }
 
-	}
+    public function row($email)
+    {
+	   // return $query->row_array();
+        //$this->db->select("email");
+        $this->db->where('email', $email);
+        //$this->db->where('password', $password);
+        $query = $this->db->get('user');
+        return $query->num_rows();
+        //var_dump($query->num_rows());exit;
+    }
 
-
-
-	public function set_news()
-	{
-	$this->load->helper('url');
-
-	$slug = url_title($this->input->post('title'), 'dash', TRUE);
-
-	$data = array(
-		'title' => $this->input->post('title'),
-		'slug' => $slug,
-		'text' => $this->input->post('text')
-	);
-
-	return $this->db->insert('news', $data);
-	}
+    public function get_cookie($email)
+    {
+        $this->db->select("username, user_id");
+        $this->db->where('email', $email);
+        $query = $this->db->get('user');
+        return $query->row();
+    }
 }
+
