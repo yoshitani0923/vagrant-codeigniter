@@ -39,6 +39,15 @@ class user_model extends CI_Model
         //var_dump($query);
     }
 
+    public function mail_check($email)
+    {
+        //$this->db->select("email");
+        $this->db->where('email', $email);
+        $query = $this->db->get('user');
+        return $query->row();
+        //var_dump($query);
+    }
+
     public function get_cookie($email)
     {
         $this->db->select("username, user_id");

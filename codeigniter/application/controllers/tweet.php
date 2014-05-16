@@ -20,7 +20,7 @@ class tweet extends CI_Controller {
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('username');
 
-        $this->form_validation->set_rules('tweet', 'ツイート内容', 'required');
+        $this->form_validation->set_rules('tweet', 'ツイート内容', 'required|max_length[140]');
         
         //ログインしていないならログイン画面へ
         if($user_id === false) {

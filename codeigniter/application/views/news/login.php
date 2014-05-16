@@ -3,8 +3,8 @@
 <body>
     <?php echo validation_errors(); ?>
     <?php echo form_open('login/index') ?>
-        メールアドレス<?php echo form_input('email');?><br />
-	    パスワード<?php echo form_password('password');?><br />
+        メールアドレス<?php echo form_input('email', set_value('email'));?><br />
+	    パスワード<?php echo form_password('password', set_value('password'));?><br />
     <?php echo form_submit('submit', 'ログイン');?>
 </form>
 </body>

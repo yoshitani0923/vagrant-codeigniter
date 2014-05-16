@@ -19,7 +19,7 @@ class News extends CI_Controller
     {
     	//検証処理の実行
         $this->form_validation->set_rules('username', '名前', 'required');
-	    $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email');
+	    $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|callback_email_check');
 	    $this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');
 
 	    //ダメならもう一度 news/create 表示
@@ -37,11 +37,11 @@ class News extends CI_Controller
             $pass = $this->input->post('password');
             //
 	    	$data = array(
-		    'username' => $this->input->post('username'),
-		    'email' => $this->input->post('email'),
-		    'password' => $this->encrypt->encode($pass),
-		    'register_date' => date("Y-m-d H:i:s")
-	        );
+		        'username' => $this->input->post('username'),
+		        'email' => $this->input->post('email'),
+		        'password' => $this->encrypt->encode($pass),
+		        'register_date' => date("Y-m-d H:i:s")
+	            );
 
             $result = $this->user_model->num_rows(
             	$this->input->post('email')
@@ -59,9 +59,21 @@ class News extends CI_Controller
 
 		    //リダイレクトでツイート画面へ遷移
 		    redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
-		    //$this->load->view('news/login');//リダイレクト使って書きましょう！！！！！
-	    
+		    //$this->load->view('news/login');//リダイレクト使って書きましょう！！！！
     }
+
+    function email_check($str)
+	{
+		$email = $this->input->post('email');
+		$email_check = $this->user_model->mail_check($email);
+
+		if ($email_check->email == $str) {
+			$this->form_validation->set_message('email_check', '入力されたメールアドレスは既に使われております。');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
 }
 
 
