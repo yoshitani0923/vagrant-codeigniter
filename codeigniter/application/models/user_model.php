@@ -30,15 +30,13 @@ class user_model extends CI_Model
         //var_dump($query->num_rows(), $query->result_array());exit;
     }
 
-    public function row($email)
+    public function num_row($email)
     {
-	   // return $query->row_array();
         //$this->db->select("email");
         $this->db->where('email', $email);
-        //$this->db->where('password', $password);
         $query = $this->db->get('user');
         return $query->num_rows();
-        //var_dump($query->num_rows());exit;
+        //var_dump($query);
     }
 
     public function get_cookie($email)

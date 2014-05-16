@@ -43,12 +43,11 @@ class News extends CI_Controller
 		    'register_date' => date("Y-m-d H:i:s")
 	        );
 
-            $result = $this->user_model->row(
+            $result = $this->user_model->num_rows(
             	$this->input->post('email')
             	);
-//            var_dump($result->email);
-//var_dump($result->email);
-            if($result == 0) {
+
+            if($result != 0) {//!--データベースから取得したデータが空ならnull返ってくる--!//
                 return $this->load->view("news/create");
             }
 	        //データベースへの書き込みメソッドuser_newsへ$dataを送る

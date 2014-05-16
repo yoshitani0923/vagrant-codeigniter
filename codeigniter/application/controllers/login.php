@@ -15,7 +15,10 @@ class login extends CI_Controller
 
     public function index()
     {   
-        //var_dump($newdata['email']);
+        $username = $this->session->userdata('username');
+        $user_id = $this->session->userdata('user_id');
+        var_dump($username);
+        var_dump($user_id);
 
         //入力必須
         $this->form_validation->set_rules('password', 'password', 'required|min_length[6]');
