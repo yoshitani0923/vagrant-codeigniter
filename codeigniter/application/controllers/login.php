@@ -15,10 +15,10 @@ class login extends CI_Controller
 
     public function index()
     {   
-        $username = $this->session->userdata('username');
+        /*$username = $this->session->userdata('username');
         $user_id = $this->session->userdata('user_id');
         var_dump($username);
-        var_dump($user_id);
+        var_dump($user_id);*/
 
         //入力必須
         $this->form_validation->set_rules('password', 'password', 'required|min_length[6]');
@@ -44,7 +44,7 @@ class login extends CI_Controller
             $email = $this->input->post('email');
             $cookie = $this->user_model->get_cookie($email);
             $this->session->set_userdata($cookie);
-            //var_dump("<pre>",$cookie);
+            
             //リダイレクトでツイート画面へ遷移
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
         }

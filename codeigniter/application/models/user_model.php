@@ -30,7 +30,7 @@ class user_model extends CI_Model
         //var_dump($query->num_rows(), $query->result_array());exit;
     }
 
-    public function num_row($email)
+    public function num_rows($email)
     {
         //$this->db->select("email");
         $this->db->where('email', $email);
