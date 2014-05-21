@@ -47,17 +47,5 @@ class News_model extends CI_Model {
         } else {
         	return false;
         }
-        
     }
-
-
-    public function hikaku($data){
-
-    }
-
-
-
-
-
-	}
-
+}

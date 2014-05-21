@@ -360,7 +360,10 @@ $config['proxy_ips'] = '';
 
 $config['csrf_protection'] = TRUE;//CSRF対策
 
+
 //$config['global_xss_filtering'] = TRUE;//XSS対策
+
+$config['javascript_location'] = 'http://localhost/codeigniter/themes/js/jquery/';
 
 
 /* End of file config.php */

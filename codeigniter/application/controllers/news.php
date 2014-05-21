@@ -8,6 +8,9 @@ class News extends CI_Controller
 		$this->load->model('user_model');
         $this->load->library('session');
         $this->load->library('encrypt');
+        $this->load->library('javascript');
+//        $this->load->library('jquery');
+        $this->load->library('javascript', array('js_library_driver' => 'scripto', 'autoload' => FALSE));
         $this->load->helper('form');
         $this->load->helper('url');
         $this->load->library('form_validation');
@@ -73,6 +76,11 @@ class News extends CI_Controller
 		} else {
 			return TRUE;
 		}
+	}
+
+	function js_sample()
+	{
+        $this->load->view("news/js_sample");
 	}
 }
 

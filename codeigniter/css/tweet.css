@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.tab {
+    margin: 0 auto;
+    padding: 10px;
+    width: 450px;
+}
+
+#tab_head {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+#tab_head > li {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    border-bottom: 0;
+    cursor: pointer;
+    float: left;
+    margin-right: -1px;
+    text-align: center;
+    width: 148px;
+}
+
+#tab_head > li.on {
+    background-color: #FFF;
+    cursor: default;
+}
+
+#tab_body {
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+#tab_body > li {
+    display: none;
+}
+
+#tab_body > li.on {
+    display: block;
+}
