@@ -13,18 +13,6 @@ class tweet extends CI_Controller {
         $this->load->helper('cookie');
     }
 
-    public function partial()
-    {
-        $step = 2;
-        $offset = (int)$this->input->get('offset');
-        $user_id = $this->session->userdata('user_id');
-        $result = $this->tweet_model->news($user_id, $offset);
-        $this->load->view('tweet/partial', array(
-            "offset" => $offset + $step,
-            "news" => $result,
-            "username" => $this->session->userdata('username')));
-    }
-
     public function new_tweet()
     {
         $this->form_validation->set_rules('tweet', 'ツイート内容', 'required|max_length[140]');
@@ -54,8 +42,14 @@ class tweet extends CI_Controller {
 
     public function more_tweet()
     {   
+        //$user_id = $this->session->userdata('user_id');
+        //$min = $this->tweet_model->get_tweet_id($user_id);
+        //var_dump($min->id);
+        //$result = $this->tweet_model->more($user_id, $min->id);
+        $page = $_GET['page'];
+        //var_dump($page);
         $user_id = $this->session->userdata('user_id');
-        $result = $this->tweet_model->news($user_id);
+        $result = $this->tweet_model->more($user_id, $page);
         $this->load->view('tweet/more_tweet', array(
             "news" => $result,
             "username" => $this->session->userdata('username')));

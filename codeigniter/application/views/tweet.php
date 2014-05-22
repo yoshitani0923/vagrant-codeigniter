@@ -20,7 +20,7 @@
     <div class = "sending">
         <h2>ツイート画面</h2>
             <?php echo form_open('tweet/new_tweet') ?>
-            <input id="tweet_area" type="textarea" name="tweet" />
+            <input id="tweet_area" type="textarea" name="tweet" value=""/>
             <button id="tweet_button" name="tweet_button">ツイート</button><br />
             </form>
     </div>
@@ -42,7 +42,8 @@
             </div>
         <?php endforeach; ?>
         <div id="more_tweet"></div>
-        <input id="more_button" type="submit" name="more_button" value="もっと見る" />
+        <input id="more_button" type="button" name="more_button" value="もっと見る" />
+        <input id="page" type="hidden" name="page" value="0">
     </div>
 
 </body>
