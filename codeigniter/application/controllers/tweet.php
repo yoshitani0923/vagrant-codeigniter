@@ -42,6 +42,7 @@ class tweet extends CI_Controller {
 
     public function more_tweet()
     {
+        
         $page = $_GET['page'];
         //var_dump($page);
         $user_id = $this->session->userdata('user_id');

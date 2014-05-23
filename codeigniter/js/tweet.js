@@ -7,17 +7,21 @@ jQuery( function() {
                 $('form').serialize(),
                 function(aaa) {//dataはhtml
                     
+                        var reset = ''
+                        $('#tweet_area').val(reset);
+
                         var tweet = '';
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
+                        tweet += aaa['username'] + '<br>';
                         tweet += aaa.news["tweet"] + '<br>';
-                        tweet += aaa.news["register_date"] + '<br>';
-                        tweet += aaa['username'];
+                        tweet += aaa.news["register_date"];
                         tweet += '</div>';
                         jQuery( '#new_tweet' ) . prepend(tweet);
-                                var v = $('#page').val();
-            v = Number(v) + 1;
-            //alert(v);
-            $('#page').val(v);
+                        
+                        var v = $('#page').val();
+                        v = Number(v) + 1;
+                        //alert(v);
+                        $('#page').val(v);
                 }
                 ,'json'
             );
@@ -46,9 +50,9 @@ jQuery( function() {
                     for (var i=0; i<bbb.news.length; i++) {
                         var tweet = '';
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
+                        tweet += bbb['username'] + '<br>';
                         tweet += bbb.news[i]["tweet"] + '<br>';
-                        tweet += bbb.news[i]["register_date"] + '<br>';
-                        tweet += bbb['username'];
+                        tweet += bbb.news[i]["register_date"];
                         tweet += '</div>';
                         jQuery( '#more_tweet' ) . append(tweet);
                     }
