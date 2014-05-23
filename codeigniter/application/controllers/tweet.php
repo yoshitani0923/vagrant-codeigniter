@@ -41,18 +41,16 @@ class tweet extends CI_Controller {
 
 
     public function more_tweet()
-    {   
-        //$user_id = $this->session->userdata('user_id');
-        //$min = $this->tweet_model->get_tweet_id($user_id);
-        //var_dump($min->id);
-        //$result = $this->tweet_model->more($user_id, $min->id);
+    {
         $page = $_GET['page'];
         //var_dump($page);
         $user_id = $this->session->userdata('user_id');
         $result = $this->tweet_model->more($user_id, $page);
-        $this->load->view('tweet/more_tweet', array(
+        //var_dump($json);exit;
+        print json_encode(array(
             "news" => $result,
             "username" => $this->session->userdata('username')));
+        
     }
 
 

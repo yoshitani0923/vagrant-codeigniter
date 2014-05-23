@@ -21,6 +21,7 @@
         <span id="jquery-sample-textStatus"></span>
     </p>
     <div id="jquery-sample-post"></div>
+
 </div>
 
 </html>
