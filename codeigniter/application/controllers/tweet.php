@@ -15,28 +15,28 @@ class tweet extends CI_Controller {
 
     public function new_tweet()
     {
+        //ルール決め
         $this->form_validation->set_rules('tweet', 'ツイート内容', 'required|max_length[140]');
-        
+        //ユーザID、ユーザネームの取得
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('username');
-        
-        $data = array(
-            "username" => $username,//ユーザネーム
-            "tweet" => $this->input->post("tweet"),
-            "now_register_date" => date("Y-m-d H:i:s")//今の時間
+        //新規ツイート情報
+        $tweet = array(
+            "user_id" => $user_id,//ユーザネーム
+            "tweet" => $this->input->post("tweet"),//内容
+            "register_date" => date("Y-m-d H:i:s")//今の時間
             );
-
+        //もしルール守っているなら新規ツイート情報をデータベースに登録
         if ($this->form_validation->run() != FALSE) {
-            $tweet = array(
-                'tweet' => $this->input->post('tweet'),
-                'user_id' => $user_id,
-                'register_date' => date("Y-m-d H:i:s")
-                );
-            //ツイート内容保存
+            //新規ツイート情報の登録実行
             $this->tweet_model->sounyu($tweet);
         }
-
-        $this->load->view("tweet/new_tweet", $data);
+        //JSONをjsで受けるため
+        print json_encode(array(
+            "news" => $tweet,
+            "username" => $this->session->userdata('username')
+            )
+        );
     }
 
 
