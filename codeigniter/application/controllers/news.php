@@ -18,6 +18,10 @@ class News extends CI_Controller
 	    $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|callback_email_check');
 	    $this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');        
 
+        if ($this->session->userdata('username') !== FALSE) {
+            redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
+        }
+
 	    if ($this->form_validation->run() === false) {
 		    return $this->load->view('news/create');
 	    }

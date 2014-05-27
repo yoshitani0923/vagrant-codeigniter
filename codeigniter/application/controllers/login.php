@@ -18,6 +18,10 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('password', 'password', 'required|min_length[6]');
         $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email');
 
+        if ($this->session->userdata('username') !== FALSE) {
+            redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
+        }
+
         if ($this->form_validation->run() === FALSE) {
             return $this->load->view('news/login');
         }
