@@ -40,13 +40,7 @@ jQuery( function() {
             jQuery .getJSON(
                 '/index.php/tweet/more_tweet',
                 'page=' + $('#page').val(),
-                function( bbb, textStatus ) {//dataはhtml
-                    /*var bbb = [
-                    {"username": "yoshitani", "message": "AAAAA", "time": "0000-00-00 00:00:00"},
-                    {"username": "yoshitani", "message": "AAAAA", "time": "0000-00-00 00:00:00"},
-                    {"username": "yoshitani", "message": "AAAAA", "time": "0000-00-00 00:00:00"},
-                    {"username": "yoshitani", "message": "AAAAA", "time": "0000-00-00 00:00:00"}
-                    ];*/
+                function( bbb, textStatus ) {
                     for (var i=0; i<bbb.news.length; i++) {
                         var tweet = '';
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';

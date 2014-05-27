@@ -51,17 +51,17 @@ $ima = 'たったいま';
         $user_id = $this->session->userdata('user_id');
         $result = $this->tweet_model->more($user_id, $page);
 
-        for ($i=0 ; $i<=9 ; $i++) {
+        for ($i=0 ; $i<count($result) ; $i++) {
         $date2 = $result[$i]['register_date'];
-        $tweet_time = strtotime($date2);//Unixタイムスタンプ形式に変換
+        $tweet_time = strtotime($result[$i]['register_date']);//Unixタイムスタンプ形式に変換
         $now_time = date("Y-m-d H:i:s");//現在の時刻をUnixタイムスタンプで取得
         $now_time = strtotime($now_time);
         $relative_time = $now_time - $tweet_time;//つぶやかれたのが何秒前か
         if ($relative_time < 60) {
             $before = round($relative_time).'秒前';
-        } elseif ($relative_time < 3600) {
+        } elseif ($relative_time < (60*60)) {
             $before = round($relative_time/60).'分前';
-        } elseif ($relative_time < 86400) {
+        } elseif ($relative_time < (60*60*24)) {
             $before = round($relative_time/(60*60)).'時間前';
         } else {
             $before = round($relative_time/(60*60*24)).'日前';
@@ -108,26 +108,27 @@ $ima = 'たったいま';
             return redirect('login/login', 'refresh');
         }
         //最新10件のツイート(tweet, register/date)取得
+        $unix_time = array();
         $result = $this->tweet_model->news($user_id);//'tweet, register_date'の取得
-        
-        for ($i=0 ; $i<=9 ; $i++) {
-        $date2 = $result[$i]['register_date'];
-        $tweet_time = strtotime($date2);//Unixタイムスタンプ形式に変換
-        $now_time = date("Y-m-d H:i:s");//現在の時刻をUnixタイムスタンプで取得
-        $now_time = strtotime($now_time);
-        $relative_time = $now_time - $tweet_time;//つぶやかれたのが何秒前か
-        
-        if ($relative_time < 60) {
-            $before = $relative_time.'秒前';
-        } elseif ($relative_time < 3600) {
-            $before = round($relative_time/60).'分前';
-        } elseif ($relative_time < 86400) {
-            $before = round($relative_time/(60*60)).'時間前';
-        } else {
-            $before = round($relative_time/(60*60*24)).'日前';
-        }
-        //var_dump($i, $time[$i]);
-        $unix_time[] = $before;
+        $found_count = count($result);
+            for ($i=0 ; $i<$found_count ; $i++) {
+            $date2 = $result[$i]['register_date'];
+            $tweet_time = strtotime($date2);//Unixタイムスタンプ形式に変換
+            $now_time = date("Y-m-d H:i:s");//現在の時刻をUnixタイムスタンプで取得
+            $now_time = strtotime($now_time);
+            $relative_time = $now_time - $tweet_time;//つぶやかれたのが何秒前か
+            
+            if ($relative_time < 60) {
+                $before = $relative_time.'秒前';
+            } elseif ($relative_time < 3600) {
+                $before = round($relative_time/60).'分前';
+            } elseif ($relative_time < 86400) {
+                $before = round($relative_time/(60*60)).'時間前';
+            } else {
+                $before = round($relative_time/(60*60*24)).'日前';
+            }
+            //var_dump($i, $time[$i]);
+            $unix_time[] = $before;
         }
 
         $data = array(

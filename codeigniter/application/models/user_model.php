@@ -44,7 +44,11 @@ class user_model extends CI_Model
         //$this->db->select("email");
         $this->db->where('email', $email);
         $query = $this->db->get('user');
-        return $query->row();
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
         //var_dump($query);
     }
 

@@ -34,7 +34,7 @@
                 <?php echo $unix_time[$key]?>
             </div>
         <?php endforeach; ?>
-        <div id="more_tweet"></div>
+        <div id = "more_tweet"></div>
         <input id="more_button" type="button" name="more_button" value="もっと見る" />
         <input id="page" type="hidden" name="page" value="0">
     </div>
