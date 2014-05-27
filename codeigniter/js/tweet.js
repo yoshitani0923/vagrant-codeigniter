@@ -1,27 +1,24 @@
 jQuery( function() {
-    jQuery( '#tweet_button' ) . click(
+    jQuery( '#tweet_button' ).click(
         function(event) {
             event.preventDefault();//イベントキャンセル
-            jQuery . post(
+            jQuery.post(
                 '/index.php/tweet/new_tweet',
-                $('form').serialize(),
-                function(aaa) {//dataはhtml
-                    
-                        var reset = ''
-                        $('#tweet_area').val(reset);
+                $('form#form_tweet_area').serialize(),
+                function(new_tweet_data) {
 
-                        var tweet = '';
-                        tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
-                        tweet += aaa['username'] + '<br>';
-                        tweet += aaa["tweet"] + '<br>';
-                        tweet += aaa.word1;//aaa.news["register_date"];
-                        tweet += '</div>';
-                        jQuery('#new_tweet').prepend(tweet);
-                        
-                        var v = $('#page').val();
-                        v = Number(v) + 1;
-                        //alert(v);
-                        $('#page').val(v);
+                    var reset = ''
+                    $('#tweet_area').val(reset);
+
+                    var tweet = '';
+                    tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
+                    tweet += new_tweet_data['username'] + '<br>';
+                    tweet += new_tweet_data["tweet"] + '<br>';
+                    tweet += new_tweet_data.new_tweet_time;//aaa.news["register_date"];
+                    tweet += '</div>';
+                    jQuery('#new_tweet').prepend(tweet);
+                    
+                    $('#page').val(Number($('#page').val()) + 1);
                 }
                 ,'json'
             );
@@ -32,12 +29,9 @@ jQuery( function() {
         function(event) {
             event.preventDefault();//イベントキャンセル
 
-            var v = $('#page').val();
-            v = Number(v) + 10;
-            //alert(v);
-            $('#page').val(v);
+            $('#page').val(Number($('#page').val()) + 10);
 
-            jQuery .getJSON(
+            jQuery.getJSON(
                 '/index.php/tweet/more_tweet',
                 'page=' + $('#page').val(),
                 function( bbb, textStatus ) {
@@ -50,11 +44,6 @@ jQuery( function() {
                         tweet += '</div>';
                         jQuery( '#more_tweet' ).append(tweet);
                     }
-                    /*var bbb = '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">yoshitani<br>AAAAAA<br>2014-05-22 11:33:45            </div>';
-                    if( textStatus == 'success') {
-                        
-                        jQuery( '#more_tweet' ) . append( bbb );//htmlデータとしてdata
-                    }*/
                 }
             );
         }

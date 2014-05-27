@@ -19,8 +19,9 @@
 
     <div class = "sending">
         <h2>ツイート画面</h2>
-            <?php echo form_open('tweet/new_tweet') ?>
-            <input id="tweet_area" type="textarea" name="tweet" value=""/>
+            <?php $attributes = array('id' => 'form_tweet_area')?>
+            <?php echo form_open('tweet/new_tweet', $attributes) ?>
+            <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40"></textarea>
             <button id="tweet_button" name="tweet_button">ツイート</button><br />
             </form>
     </div>

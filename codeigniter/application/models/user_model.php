@@ -7,8 +7,8 @@ class user_model extends CI_Model
 		$this->load->database();
 	}
 
-    //データベースに書き込み
-	public function set_news($data)
+
+	public function make_new_account($data)
 	{
 		$this->db->set('username', $data['username']);
 		$this->db->set('email', $data['email']);
@@ -18,26 +18,20 @@ class user_model extends CI_Model
 	    return;
 	}
 
-    //ログイン機能
-    public function login($email)
+
+    public function login($email, $password)
     {
-	   // return $query->row_array();
-        $this->db->select("username, password, user_id");
+        $this->db->select("username, password");
         $this->db->where('email', $email);
-        //$this->db->where('password', $password);
+        $this->db->where('password', $password);
         $query = $this->db->get('user');
-        return $query->row();
-        //var_dump($query->num_rows(), $query->result_array());exit;
+        if ($query->num_rows() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public function num_rows($email)
-    {
-        //$this->db->select("email");
-        $this->db->where('email', $email);
-        $query = $this->db->get('user');
-        return $query->num_rows();
-        //var_dump($query);
-    }
 
     public function mail_check($email)
     {
@@ -49,8 +43,8 @@ class user_model extends CI_Model
         } else {
             return FALSE;
         }
-        //var_dump($query);
     }
+
 
     public function get_cookie($email)
     {

@@ -1,8 +1,7 @@
 <?php
 class News extends CI_Controller
 {
-
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
 		$this->load->model('user_model');
@@ -13,55 +12,39 @@ class News extends CI_Controller
         $this->load->library('form_validation');
 	}
 
-	
-
     public function create()
     {
-    	//検証処理の実行
         $this->form_validation->set_rules('username', '名前', 'required');
 	    $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|callback_email_check');
-	    $this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');
+	    $this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');        
 
-	    //ダメならもう一度 news/create 表示
 	    if ($this->form_validation->run() === false) {
 		    return $this->load->view('news/create');
-	    } 
-	    	//フォームからのデータ受け取り
-            $email = $this->input->post('email');
-            $cookie = $this->user_model->get_cookie(
-            	$this->input->post('email')
-            	);
-            
-            $this->session->set_userdata($cookie);
-            
-            $pass = $this->input->post('password');
-            //
-	    	$data = array(
-		        'username' => $this->input->post('username'),
-		        'email' => $this->input->post('email'),
-		        'password' => $this->encrypt->encode($pass),
-		        'register_date' => date("Y-m-d H:i:s")
-	            );
+	    }
 
-            $result = $this->user_model->num_rows(
-            	$this->input->post('email')
-            	);
+        $email = $this->input->post('email');
+        $username = $this->input->post('username');
+        $result = $this->user_model->mail_check($email);
 
-            if($result != 0) {//!--データベースから取得したデータが空ならnull返ってくる--!//
-                return $this->load->view("news/create");
-            }
-	        //データベースへの書き込みメソッドuser_newsへ$dataを送る
-		    $this->user_model->set_news($data);
+        if($result != 0) {
+            return $this->load->view("news/create");
+        }
+        
+        $typed_password = $this->input->post('password');
+        $data = array(
+        'username' => $username,
+        'email' => $email,
+        'password' => $this->encrypt->encode($typed_password),
+        'register_date' => date("Y-m-d H:i:s")
+        );
+	    $cookie = $this->user_model->get_cookie($email);
 
-		    $cookie = $this->user_model->get_cookie($email);
-
-            $this->session->set_userdata($cookie);
-
-		    //リダイレクトでツイート画面へ遷移
-		    redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
-		    //$this->load->view('news/login');//リダイレクト使って書きましょう！！！！
+	    $this->user_model->make_new_account($data);
+        $this->session->set_userdata($cookie);
+	    redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
     }
 
+    /*新規登録時に入力したemailの重複チェックのメソッド*/
     public function email_check($email)
 	{
 		$exists = $this->user_model->mail_check($email);
@@ -71,11 +54,6 @@ class News extends CI_Controller
 		} else {
 			return TRUE;
 		}	
-	}
-
-	public function js_sample()
-	{
-        $this->load->view("news/js_sample");
 	}
 }
 
