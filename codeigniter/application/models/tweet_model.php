@@ -27,7 +27,6 @@ class tweet_model extends CI_Model
     {
         $this->db->select('tweet, register_date');
         $this->db->where('user_id', $user_id);
-        //$this->db->where('id <', $page);
         $this->db->order_by("id", "desc"); 
         $this->db->limit(10, $page);
         $more = $this->db->get('tweet');

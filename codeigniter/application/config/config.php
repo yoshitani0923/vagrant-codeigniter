@@ -365,6 +365,8 @@ $config['csrf_protection'] = TRUE;//CSRF対策
 
 $config['javascript_location'] = 'http://localhost/codeigniter/themes/js/jquery/';
 
+$config['global_xss_filtering'] = TRUE;//XSS対策
+
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

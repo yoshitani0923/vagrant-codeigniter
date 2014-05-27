@@ -13,10 +13,10 @@ jQuery( function() {
                         var tweet = '';
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                         tweet += aaa['username'] + '<br>';
-                        tweet += aaa.news["tweet"] + '<br>';
-                        tweet += aaa.news["register_date"];
+                        tweet += aaa["tweet"] + '<br>';
+                        tweet += aaa.word1;//aaa.news["register_date"];
                         tweet += '</div>';
-                        jQuery( '#new_tweet' ) . prepend(tweet);
+                        jQuery('#new_tweet').prepend(tweet);
                         
                         var v = $('#page').val();
                         v = Number(v) + 1;
@@ -28,7 +28,7 @@ jQuery( function() {
         }
     );
 
-    jQuery( '#more_button' ) . click(
+    jQuery('#more_button').click(
         function(event) {
             event.preventDefault();//イベントキャンセル
 
@@ -52,9 +52,9 @@ jQuery( function() {
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                         tweet += bbb['username'] + '<br>';
                         tweet += bbb.news[i]["tweet"] + '<br>';
-                        tweet += bbb.news[i]["register_date"];
+                        tweet += bbb.unix_time[i];
                         tweet += '</div>';
-                        jQuery( '#more_tweet' ) . append(tweet);
+                        jQuery( '#more_tweet' ).append(tweet);
                     }
                     /*var bbb = '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">yoshitani<br>AAAAAA<br>2014-05-22 11:33:45            </div>';
                     if( textStatus == 'success') {

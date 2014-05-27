@@ -27,18 +27,11 @@
 
     <div class = "tweet">
         <div id="new_tweet"></div>
-        <!--<?php if ($now_tweet != false): ?>
-            <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-                <?php echo $username?><br />
-                <?php echo $now_tweet?><br />
-                <?php echo $now_register_date?>
-            </div>
-        <?php endif; ?>-->
-        <?php foreach ($news as $item): ?>
+        <?php foreach ($news as $key => $item): ?>
 	        <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                 <?php echo $username?><br />
                 <?php echo $item['tweet']?><br />
-                <?php echo $item['register_date']?>
+                <?php echo $unix_time[$key]?>
             </div>
         <?php endforeach; ?>
         <div id="more_tweet"></div>

@@ -29,13 +29,9 @@ class login extends CI_Controller
         }
         
         $pass = $this->input->post('password');
-
         $ok = $this->user_model->login(
             $this->input->post('email')
             );
-        //var_dump($ok);exit;
-        //var_dump($ok['password']);
-        
         $password = $this->encrypt->decode($ok->password);
         //var_dump($pass);
         //var_dump($password);

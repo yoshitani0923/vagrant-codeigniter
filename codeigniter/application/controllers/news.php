@@ -8,9 +8,7 @@ class News extends CI_Controller
 		$this->load->model('user_model');
         $this->load->library('session');
         $this->load->library('encrypt');
-        $this->load->library('javascript');
-//        $this->load->library('jquery');
-        $this->load->library('javascript', array('js_library_driver' => 'scripto', 'autoload' => FALSE));
+        $this->load->library('javascript');//$this->load->library('javascript', array('js_library_driver' => 'scripto', 'autoload' => FALSE));
         $this->load->helper('form');
         $this->load->helper('url');
         $this->load->library('form_validation');
@@ -65,20 +63,20 @@ class News extends CI_Controller
 		    //$this->load->view('news/login');//リダイレクト使って書きましょう！！！！
     }
 
-    function email_check($str)
+    public function email_check()
 	{
-		$email = $this->input->post('email');
+		$email = $this->input->post('email');//とれていない
+		var_dump($email);
 		$email_check = $this->user_model->mail_check($email);
 
-		if ($email_check->email == $str) {
+		if ($email_check->email === $email) {
 			$this->form_validation->set_message('email_check', '入力されたメールアドレスは既に使われております。');
 			return FALSE;
-		} else {
-			return TRUE;
 		}
+		return TRUE;
 	}
 
-	function js_sample()
+	public function js_sample()
 	{
         $this->load->view("news/js_sample");
 	}
