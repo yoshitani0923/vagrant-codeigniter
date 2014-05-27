@@ -34,13 +34,13 @@ jQuery( function() {
             jQuery.getJSON(
                 '/index.php/tweet/more_tweet',
                 'page=' + $('#page').val(),
-                function( bbb, textStatus ) {
-                    for (var i=0; i<bbb.news.length; i++) {
+                function( more_tweet, textStatus ) {
+                    for (var i=0; i<more_tweet.news.length; i++) {
                         var tweet = '';
                         tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
-                        tweet += bbb['username'] + '<br>';
-                        tweet += bbb.news[i]["tweet"] + '<br>';
-                        tweet += bbb.unix_time[i];
+                        tweet += more_tweet['username'] + '<br>';
+                        tweet += more_tweet.news[i]["tweet"] + '<br>';
+                        tweet += more_tweet.unix_time[i];
                         tweet += '</div>';
                         jQuery( '#more_tweet' ).append(tweet);
                     }
