@@ -26,9 +26,9 @@ class user_model extends CI_Model
         $this->db->where('password', $password);
         $query = $this->db->get('user');
         if ($query->num_rows() > 0) {
-            return false;
+            return FALSE;
         } else {
-            return true;
+            return TRUE;
         }
     }
 

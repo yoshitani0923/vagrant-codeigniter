@@ -1,8 +1,8 @@
-jQuery( function() {
-    jQuery( '#tweet_button' ).click(
+$( function() {
+    $( '#tweet_button' ).click(
         function(event) {
             event.preventDefault();//イベントキャンセル
-            jQuery.post(
+            $.post(
                 '/index.php/tweet/new_tweet',
                 $('form#form_tweet_area').serialize(),
                 function(new_tweet_data) {
@@ -16,7 +16,7 @@ jQuery( function() {
                     tweet += new_tweet_data["tweet"] + '<br>';
                     tweet += new_tweet_data.new_tweet_time;//aaa.news["register_date"];
                     tweet += '</div>';
-                    jQuery('#new_tweet').prepend(tweet);
+                    $('#new_tweet').prepend(tweet);
                     
                     $('#page').val(Number($('#page').val()) + 1);
                 }
@@ -25,24 +25,24 @@ jQuery( function() {
         }
     );
 
-    jQuery('#more_button').click(
+    $('#more_button').click(
         function(event) {
             event.preventDefault();//イベントキャンセル
 
             $('#page').val(Number($('#page').val()) + 10);
 
-            jQuery.getJSON(
+            $.getJSON(
                 '/index.php/tweet/more_tweet',
                 'page=' + $('#page').val(),
                 function( more_tweet, textStatus ) {
-                    for (var i=0; i<more_tweet.news.length; i++) {
+                    for (var i = 0 ; i < more_tweet.news.length ; i++) {
                         var tweet = '';
                         tweet += '<div style="background-color: #FFF; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                         tweet += more_tweet['username'] + '<br>';
                         tweet += more_tweet.news[i]["tweet"] + '<br>';
                         tweet += more_tweet.unix_time[i];
                         tweet += '</div>';
-                        jQuery( '#more_tweet' ).append(tweet);
+                        $( '#more_tweet' ).append(tweet);
                     }
                 }
             );

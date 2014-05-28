@@ -22,7 +22,7 @@ class News extends CI_Controller
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
         }
 
-	    if ($this->form_validation->run() === false) {
+	    if ($this->form_validation->run() === FALSE) {
 		    return $this->load->view('news/create');
 	    }
 
@@ -30,16 +30,16 @@ class News extends CI_Controller
         $username = $this->input->post('username');
         $result = $this->user_model->mail_check($email);
 
-        if($result != 0) {
+        if($result !== 0) {
             return $this->load->view("news/create");
         }
         
         $typed_password = $this->input->post('password');
         $data = array(
-        'username' => $username,
-        'email' => $email,
-        'password' => $this->encrypt->encode($typed_password),
-        'register_date' => date("Y-m-d H:i:s")
+            'username' => $username,
+            'email' => $email,
+            'password' => $this->encrypt->encode($typed_password),
+            'register_date' => date("Y-m-d H:i:s")
         );
 	    $cookie = $this->user_model->get_cookie($email);
 

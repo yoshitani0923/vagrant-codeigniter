@@ -21,7 +21,7 @@
     <div class = "sending">
             <?php $attributes = array('id' => 'form_tweet_area')?>
             <?php echo form_open('tweet/new_tweet', $attributes) ?>
-            <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40"></textarea>
+            <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40" maxlength="139"></textarea>
             <button id="tweet_button" name="tweet_button">ツイート</button><br />
             </form>
     </div>

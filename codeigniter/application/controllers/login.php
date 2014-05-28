@@ -32,7 +32,7 @@ class Login extends CI_Controller
         $check = $this->user_model->login($email, $encode_password);
         $cookie = $this->user_model->get_cookie($email);
 
-        if($check === true) {
+        if($check === TRUE) {
             $this->session->set_userdata($cookie);
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
         }

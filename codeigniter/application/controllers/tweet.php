@@ -1,5 +1,5 @@
 <?php
-class tweet extends CI_Controller {
+class Tweet extends CI_Controller {
 
     function __construct(){
         parent::__construct();
@@ -18,7 +18,7 @@ class tweet extends CI_Controller {
         
         $user_id = $this->session->userdata('user_id');
 
-        if($user_id === false) {
+        if($user_id === FALSE) {
             return redirect('login/login', 'refresh');
         }
         
@@ -58,7 +58,7 @@ class tweet extends CI_Controller {
     {
         $this->form_validation->set_rules('tweet_area', 'ツイート内容', 'required|max_length[139]');
         
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() === FALSE) {
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
         }
 
@@ -66,7 +66,7 @@ class tweet extends CI_Controller {
         $username = $this->session->userdata('username');
         $new_tweet_time = 'たったいま';
         $tweet = array(
-            "user_id" => $user_id,//id
+            "user_id" => $user_id,
             "tweet" => $this->input->post("tweet_area"),
             "register_date" => date("Y-m-d H:i:s")
             );
@@ -85,10 +85,9 @@ class tweet extends CI_Controller {
 
     }
 
-
     public function more_tweet()
     {
-        $page = $this->input->get('page');//修正しましょうinput->getたぶん
+        $page = $this->input->get('page');
         $user_id = $this->session->userdata('user_id');
         $result = $this->tweet_model->more($user_id, $page);
 
