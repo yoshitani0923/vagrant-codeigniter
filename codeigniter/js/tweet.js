@@ -37,7 +37,7 @@ jQuery( function() {
                 function( more_tweet, textStatus ) {
                     for (var i=0; i<more_tweet.news.length; i++) {
                         var tweet = '';
-                        tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
+                        tweet += '<div style="background-color: #FFF; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                         tweet += more_tweet['username'] + '<br>';
                         tweet += more_tweet.news[i]["tweet"] + '<br>';
                         tweet += more_tweet.unix_time[i];

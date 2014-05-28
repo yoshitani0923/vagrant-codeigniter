@@ -2,12 +2,12 @@
 <head>
     <meta charset="UTF-8">
     <title>投稿&一覧</title>
-    <link rel="stylesheet" href="/css/csssample.css">
+    <link rel="stylesheet" href="/css/tweet.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="/js/tweet.js"></script>
 </head>
-<body>
+<body id="body">
     <div class = "header">
         <ul>
             <li><?php echo $username?></li>
@@ -17,8 +17,8 @@
         </ul>
     </div>
 
+    <h2>ツイート画面</h2>
     <div class = "sending">
-        <h2>ツイート画面</h2>
             <?php $attributes = array('id' => 'form_tweet_area')?>
             <?php echo form_open('tweet/new_tweet', $attributes) ?>
             <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40"></textarea>
@@ -29,7 +29,7 @@
     <div class = "tweet">
         <div id="new_tweet"></div>
         <?php foreach ($news as $key => $item): ?>
-	        <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+	        <div style="background-color: #FFF; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                 <?php echo $username?><br />
                 <?php echo $item['tweet']?><br />
                 <?php echo $unix_time[$key]?>
@@ -39,6 +39,5 @@
         <input id="more_button" type="button" name="more_button" value="もっと見る" />
         <input id="page" type="hidden" name="page" value="0">
     </div>
-
 </body>
 </html>
