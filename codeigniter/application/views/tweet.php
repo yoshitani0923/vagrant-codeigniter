@@ -37,9 +37,10 @@
         <?php endforeach; ?>
         <div id = "more_tweet"></div>
         <div id = "more_button_area">
-            <input id="more_button" type="button" name="more_button" value="もっと見る" />
+            <input id="more_button" type="button" name="more_button" value="もっと見る">
         </div>
         <input id="page" type="hidden" name="page" value="0">
+        <input type="hidden" value="<?php echo $button ?>" id="button"/>
     </div>
 </body>
 </html>
