@@ -21,8 +21,8 @@
     <div class = "sending">
             <?php $attributes = array('id' => 'form_tweet_area')?>
             <?php echo form_open('tweet/new_tweet', $attributes) ?>
-            <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40" maxlength="139"></textarea>
-            <button id="tweet_button" name="tweet_button">ツイート</button><br />
+                <textarea id="tweet_area" name="tweet_area" value="" rows="4" cols="40" maxlength="139"></textarea>
+                <button id="tweet_button" name="tweet_button">ツイート</button><br />
             </form>
     </div>
 
@@ -36,7 +36,9 @@
             </div>
         <?php endforeach; ?>
         <div id = "more_tweet"></div>
-        <input id="more_button" type="button" name="more_button" value="もっと見る" />
+        <div id = "more_button_area">
+            <input id="more_button" type="button" name="more_button" value="もっと見る" />
+        </div>
         <input id="page" type="hidden" name="page" value="0">
     </div>
 </body>

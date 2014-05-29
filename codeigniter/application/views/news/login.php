@@ -9,6 +9,6 @@
 </form>
 </body>
 
-<a href="http://vagrant-codeigniter.local/index.php/news/create">
+<a href = "http://vagrant-codeigniter.local/index.php/news/create">
 	新規登録はこちら
 </a>

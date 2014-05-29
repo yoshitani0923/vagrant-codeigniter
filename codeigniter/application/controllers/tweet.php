@@ -56,10 +56,11 @@ class Tweet extends CI_Controller {
 
     public function new_tweet()
     {
-        $this->form_validation->set_rules('tweet_area', 'ツイート内容', 'required|max_length[139]');
+        $this->form_validation->set_rules('form_tweet_area', 'ツイート内容', 'required|max_length[139]');
         
-        if ($this->form_validation->run() === FALSE) {
+        if ($this->input->post('tweet_area') === '') {
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
+            //$this->load->view('tweet');
         }
 
         $user_id = $this->session->userdata('user_id');
@@ -77,7 +78,7 @@ class Tweet extends CI_Controller {
             ->set_content_type('application/json')
             ->set_output(json_encode(array(
                 "tweet" => $tweet['tweet'],
-                "username" => $this->session->userdata('username'),
+                "username" => $username,
                 "new_tweet_time" => $new_tweet_time
                 )
             )
@@ -89,7 +90,8 @@ class Tweet extends CI_Controller {
     {
         $page = $this->input->get('page');
         $user_id = $this->session->userdata('user_id');
-        $result = $this->tweet_model->more($user_id, $page);
+        $get = $this->tweet_model->more($user_id, $page);
+        $result = $get->result_array();
 
         for ($i = 0 ; $i < count($result) ; $i++) {
             $tweet_time = strtotime($result[$i]['register_date']);
@@ -107,13 +109,16 @@ class Tweet extends CI_Controller {
             }
             $unix_time[] = $before;
         }
+        $all_num = $this->tweet_model->count_all_num($user_id);
 
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode(array(
                 "news" => $result,
                 "username" => $this->session->userdata('username'),
-                "unix_time" => $unix_time
+                "unix_time" => $unix_time,
+                "num" => $get->num_rows(),
+                "all_num" => $all_num
                 )
             )
         );

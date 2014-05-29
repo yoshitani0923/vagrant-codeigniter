@@ -7,9 +7,9 @@ class News extends CI_Controller
 		$this->load->model('user_model');
         $this->load->library('session');
         $this->load->library('encrypt');
+        $this->load->library('form_validation');
         $this->load->helper('form');
         $this->load->helper('url');
-        $this->load->library('form_validation');
 	}
 
     public function create()
@@ -22,15 +22,16 @@ class News extends CI_Controller
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
         }
 
+        $email = $this->input->post('email');
+        $username = $this->input->post('username');
+
 	    if ($this->form_validation->run() === FALSE) {
 		    return $this->load->view('news/create');
 	    }
 
-        $email = $this->input->post('email');
-        $username = $this->input->post('username');
         $result = $this->user_model->mail_check($email);
 
-        if($result !== 0) {
+        if($result === FALSE) {
             return $this->load->view("news/create");
         }
         
@@ -41,9 +42,9 @@ class News extends CI_Controller
             'password' => $this->encrypt->encode($typed_password),
             'register_date' => date("Y-m-d H:i:s")
         );
-	    $cookie = $this->user_model->get_cookie($email);
 
 	    $this->user_model->make_new_account($data);
+	    $cookie = $this->user_model->get_cookie($email);
         $this->session->set_userdata($cookie);
 	    redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
     }
@@ -54,9 +55,9 @@ class News extends CI_Controller
 		$exists = $this->user_model->mail_check($email);
 		if ($exists) {
 			$this->form_validation->set_message('email_check', '入力されたメールアドレスは既に使われております。');
-			return FALSE;
-		} else {
 			return TRUE;
+		} else {
+			return FALSE;
 		}	
 	}
 }

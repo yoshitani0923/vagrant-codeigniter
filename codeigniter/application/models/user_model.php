@@ -5,6 +5,7 @@ class user_model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->database();
+        $this->load->helper('form');
 	}
 
 
@@ -39,9 +40,9 @@ class user_model extends CI_Model
         $this->db->where('email', $email);
         $query = $this->db->get('user');
         if ($query->num_rows() > 0) {
-            return TRUE;
-        } else {
             return FALSE;
+        } else {
+            return TRUE;
         }
     }
 

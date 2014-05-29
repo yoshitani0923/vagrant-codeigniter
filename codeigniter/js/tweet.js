@@ -1,10 +1,10 @@
 $( function() {
     $( '#tweet_button' ).click(
         function(event) {
-            event.preventDefault();//イベントキャンセル
+            event.preventDefault();
             $.post(
                 '/index.php/tweet/new_tweet',
-                $('form#form_tweet_area').serialize(),
+                $('#form_tweet_area').serialize(),
                 function(new_tweet_data) {
 
                     var reset = ''
@@ -14,7 +14,7 @@ $( function() {
                     tweet += '<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                     tweet += new_tweet_data['username'] + '<br>';
                     tweet += new_tweet_data["tweet"] + '<br>';
-                    tweet += new_tweet_data.new_tweet_time;//aaa.news["register_date"];
+                    tweet += new_tweet_data.new_tweet_time;
                     tweet += '</div>';
                     $('#new_tweet').prepend(tweet);
                     
@@ -42,7 +42,14 @@ $( function() {
                         tweet += more_tweet.news[i]["tweet"] + '<br>';
                         tweet += more_tweet.unix_time[i];
                         tweet += '</div>';
-                        $( '#more_tweet' ).append(tweet);
+                        $('#more_tweet').append(tweet);
+                        var value = $('#page').val() + 10;
+
+                    if(more_tweet['num'] < 10 && more_tweet['all_num'] <= value) {
+                        document.getElementById('more_button_area').style.display = "none";
+                    }
+
+                    
                     }
                 }
             );

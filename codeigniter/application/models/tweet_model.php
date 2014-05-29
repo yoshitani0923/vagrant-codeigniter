@@ -31,8 +31,7 @@ class tweet_model extends CI_Model
         $this->db->where('user_id', $user_id);
         $this->db->order_by("id", "desc"); 
         $this->db->limit(10, $page);
-        $more = $this->db->get('tweet');
-        return $more->result_array();
+        return $this->db->get('tweet');
     }
 
 
@@ -40,4 +39,12 @@ class tweet_model extends CI_Model
     {
 		return $this->db->insert('tweet', $tweet);
 	}
+
+    public function count_all_num($user_id)
+    {
+        $this->db->where('user_id', $user_id);
+        $this->db->from('tweet');
+        $num = $this->db->count_all_results();
+        return $num;
+    }
 }
