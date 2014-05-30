@@ -23,26 +23,9 @@ class Tweet extends CI_Controller {
         }
         
         $username = $this->session->userdata('username');
-        $unix_time = array();
+        $now_time = strtotime(date("Y-m-d H:i:s"));
         $result = $this->tweet_model->news($user_id);
-        if($this->tweet_model->count_all_num($user_id) > 0) {
-            for ($i = 0 ; $i < count($result) ; $i++) {
-                $tweet_time = strtotime($result[$i]['register_date']);
-                $now_time = strtotime(date("Y-m-d H:i:s"));
-                $relative_time = $now_time - $tweet_time;
-                
-                if ($relative_time < 60) {
-                    $before = $relative_time.'秒前';
-                } elseif ($relative_time < (60*60)) {
-                    $before = round($relative_time/60).'分前';
-                } elseif ($relative_time < 60*60*24) {
-                    $before = round($relative_time/(60*60)).'時間前';
-                } else {
-                    $before = round($relative_time/(60*60*24)).'日前';
-                }
-                $unix_time[] = $before;
-            }
-        }
+        $tweet = $this->tweet_model->time_calc($result, $now_time);
 
         if($this->tweet_model->count_all_num($user_id) === count($result)) {
             $button = 0;
@@ -52,10 +35,9 @@ class Tweet extends CI_Controller {
 
         $data = array(
             "button" => $button,
-            "news" => $result,
+            "news" => $tweet,
             "username" => $username,
-            "now_register_date" => date("Y-m-d H:i:s"),
-            "unix_time" => $unix_time
+            "now_register_date" => date("Y-m-d H:i:s")
             );
         
         $this->load->view('tweet', $data);
@@ -108,31 +90,16 @@ class Tweet extends CI_Controller {
             exit;
         }
 
-        $unix_time[] = array();
-        for ($i = 0 ; $i < count($result) ; $i++) {
-            $tweet_time = strtotime($result[$i]['register_date']);
-            $now_time = strtotime(date("Y-m-d H:i:s"));
-            $relative_time = $now_time - $tweet_time;
+        $now_time = strtotime(date("Y-m-d H:i:s"));
+        $tweet = $this->tweet_model->time_calc($result, $now_time);
 
-            if ($relative_time < 60) {
-                $before = round($relative_time).'秒前';
-            } elseif ($relative_time < (60*60)) {
-                $before = round($relative_time/60).'分前';
-            } elseif ($relative_time < (60*60*24)) {
-                $before = round($relative_time/(60*60)).'時間前';
-            } else {
-                $before = round($relative_time/(60*60*24)).'日前';
-            }
-            $unix_time[] = $before;
-        }
         $all_num = $this->tweet_model->count_all_num($user_id);
 
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode(array(
-                "news" => $result,
+                "news" => $tweet,
                 "username" => $this->session->userdata('username'),
-                "unix_time" => $unix_time,
                 "num" => $get->num_rows(),
                 "all_num" => $all_num
             )));

@@ -24,6 +24,28 @@ class tweet_model extends CI_Model
         return $query->result_array();
     }
 
+    public function time_calc($tweets, $now_time)
+    {
+        foreach($tweets as &$unix_tweet) {
+            $unix_time = strtotime($unix_tweet['register_date']);
+            $gap = $now_time - $unix_time;
+
+            if ($gap < 60) {
+                $before = round($gap).'秒前';
+            } elseif ($gap < (60*60)) {
+                $before = round($gap/60).'分前';
+            } elseif ($gap < (60*60*24)) {
+                $before = round($gap/(60*60)).'時間前';
+            } else {
+                $before = round($gap/(60*60*24)).'日前';
+            }
+            
+            $unix_tweet["unix_time"] = $before;
+        }
+
+        return $tweets;
+    }
+
 
     public function more($user_id, $page)
     {

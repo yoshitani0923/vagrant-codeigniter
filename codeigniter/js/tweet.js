@@ -1,6 +1,5 @@
 $( function() {
   var button = $("#button").val();
-  console.log(button);
   if (button == 0) {
     $("#more_button").hide();
   }
@@ -41,13 +40,17 @@ $( function() {
                         tweet += '<div style="background-color: #FFF; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
                         tweet += more_tweet['username'] + '<br>';
                         tweet += more_tweet.news[i]["tweet"] + '<br>';
-                        tweet += more_tweet.unix_time[i];
+                        tweet += more_tweet.news[i]["unix_time"];
                         tweet += '</div>';
                         $('#more_tweet').append(tweet);
                     }
-                    var value = $('#page').val() + 10;
-                    if(more_tweet['num'] < 10 && more_tweet['all_num'] <= value) {
+                    if(more_tweet['num'] < 10) {
                         $('#more_button_area').hide();
+                    }
+                    if(more_tweet['num'] == 10) {
+                        if(more_tweet['all_num'] == Number($('#page').val()) + 10){
+                            $('#more_button_area').hide();
+                        }
                     }
                 });
         });
