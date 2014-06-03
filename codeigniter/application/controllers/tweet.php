@@ -79,8 +79,6 @@ class Tweet extends CI_Controller {
     public function more_tweet()
     {
         $page = $this->input->get('page');
-        //var_dump($page);
-        //log_message('error', 'page: ' . $page);
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('username');
         $get = $this->tweet_model->more($user_id, $page);

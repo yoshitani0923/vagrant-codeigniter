@@ -42,7 +42,6 @@ class News extends CI_Controller
             'password' => $this->encrypt->encode($typed_password),
             'register_date' => date("Y-m-d H:i:s")
         );
-
 	    $this->user_model->make_new_account($data);
 	    $cookie = $this->user_model->get_cookie($email);
         $this->session->set_userdata($cookie);

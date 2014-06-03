@@ -4,34 +4,29 @@
     background-color: #EEE;
 }
 
-#tab_head > li {
-    background-color: #EEE;
-    border: 1px solid #CCC;
-    border-bottom: 0;
-    cursor: pointer;
-    float: left;
-    margin-right: -1px;
-    text-align: center;
-    width: 148px;
-}
-
-#tab_head > li.on {
-    background-color: #FFF;
-    cursor: default;
-}
-
-#tab_body {
-    background-color: #FFF;
-    border: 1px solid #CCC;
-    list-style-type: none;
-    margin: 0;
-    padding: 10px;
-}
-
-#tab_body > li {
+#temp_username {
     display: none;
 }
 
-#tab_body > li.on {
-    display: block;
+#temp_tweet {
+    display: none;
+}
+
+#temp_unix_time {
+    display: none;
+}
+
+#template {
+    background-color: #FFF;
+    padding: 10px;
+    margin-bottom:10px;
+    border: 1px solid #333333;
+    display: none;  
+}
+
+.copied {
+    background-color: #FFF;
+    padding: 10px;
+    margin-bottom:10px;
+    border: 1px solid #333333;
 }
