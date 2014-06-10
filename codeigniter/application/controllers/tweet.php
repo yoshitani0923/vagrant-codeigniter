@@ -6,25 +6,60 @@ class Tweet extends CI_Controller {
         $this->load->model('tweet_model');
         $this->load->library('form_validation');
         $this->load->library('session');
+        $this->load->library('mymemcached'); 
         $this->load->helper('array');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('cookie');
+        $this->load->driver('cache', array('adapter' => 'memcached'));
+    }
+
+    public function loadcache()
+    {
+        $namespace = $this->session->userdata('username');
+        $key = '10';
+        $data = $this->mymemcached->loadCache($namespace, $key);
+        echo $data;
+    }
+
+    public function test()
+    {
+        $user_id = $this->session->userdata('user_id');
+        $this->mymemcached->test($user_id);
     }
 
     public function index()
     {
+        $user_id = $this->session->userdata('user_id');
+        $username = $this->session->userdata('username');
+        $key = $this->cache->memcached->get($user_id);
+        if ($key === false) {
+            $key = 0;
+        }
+        $this->cache->save($user_id, $key);
+        echo '$key→→→';
+        var_dump($key);
+        //memcachedにデータがあれば / なければ
+        if($this->mymemcached->loadCache($user_id, $key) !== FALSE) {
+            $result = $this->mymemcached->loadCache($user_id, $key);
+            echo '成功';
+            var_dump($result);
+        } else {
+            $result = $this->tweet_model->news($user_id);
+            $keyName = $this->mymemcached->creatCacheKey($user_id, $key);
+            $this->cache->save($keyName, $result);
+            echo '失敗';
+        }
+        var_dump($result);
+
         $this->form_validation->set_rules('tweet', 'ツイート内容', 'required|max_length[140]');
         
-        $user_id = $this->session->userdata('user_id');
-
         if($user_id === FALSE) {
             return redirect('login/login', 'refresh');
         }
         
         $username = $this->session->userdata('username');
         $now_time = strtotime(date("Y-m-d H:i:s"));
-        $result = $this->tweet_model->news($user_id);
         $tweet = $this->tweet_model->time_calc($result, $now_time);
 
         if($this->tweet_model->count_all_num($user_id) === count($result)) {
@@ -39,7 +74,7 @@ class Tweet extends CI_Controller {
             "username" => $username,
             "now_register_date" => date("Y-m-d H:i:s")
             );
-        
+
         $this->load->view('tweet', $data);
     }
 
@@ -49,7 +84,7 @@ class Tweet extends CI_Controller {
         $this->form_validation->set_rules('form_tweet_area', 'ツイート内容', 'required|max_length[139]');
         
         if ($this->input->post('tweet_area') === '') {
-            redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
+            redirect('tweet', 'refresh');
             //$this->load->view('tweet');
         }
 
@@ -63,6 +98,8 @@ class Tweet extends CI_Controller {
             );
 
         $this->tweet_model->save_new_tweet($tweet);
+
+        $this->mymemcached->deleteCache($user_id);
 
         $this->output
             ->set_content_type('application/json')
@@ -79,10 +116,24 @@ class Tweet extends CI_Controller {
     public function more_tweet()
     {
         $page = $this->input->get('page');
+        if ($page === false) {
+            $page = 0;
+        }
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('username');
-        $get = $this->tweet_model->more($user_id, $page);
-        $result = $get->result_array();
+
+        //キャッシュから取得してくる
+        $result = $this->mymemcached->loadCache($user_id, $page);
+        //もしデータがなければ…
+        if ($result === FALSE) {
+            //DBからツイート情報取得
+            $get = $this->tweet_model->more($user_id, $page);
+            $result = $get->result_array();
+            //キャッシュ保存
+            $this->mymemcached->saveCache($user_id, $page, $result);
+        };
+        $data = $this->tweet_model->more($user_id, $page);
+        $num = $data->num_rows();
 
         if($this->tweet_model->count_all_num($user_id) == 0){
             exit;
@@ -92,13 +143,13 @@ class Tweet extends CI_Controller {
         $tweet = $this->tweet_model->time_calc($result, $now_time);
 
         $all_num = $this->tweet_model->count_all_num($user_id);
-
+        
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode(array(
                 "news" => $tweet,
-                "username" => $this->session->userdata('username'),
-                "num" => $get->num_rows(),
+                "username" => $username,
+                "num" => $num,
                 "all_num" => $all_num
             )));
     }

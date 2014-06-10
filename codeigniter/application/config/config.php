@@ -367,6 +367,10 @@ $config['javascript_location'] = 'http://localhost/codeigniter/themes/js/jquery/
 
 $config['global_xss_filtering'] = TRUE;//XSS対策
 
+$config['memcached'] = array(
+        'hostname' => '127.0.0.1',
+        'port'        => 11211
+);  
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

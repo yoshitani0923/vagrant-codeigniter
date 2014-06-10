@@ -1,22 +1,24 @@
 <?php
 class News extends CI_Controller
 {
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->model('user_model');
+function __construct()
+{
+parent::__construct();
+$this->load->model('user_model');
         $this->load->library('session');
         $this->load->library('encrypt');
         $this->load->library('form_validation');
+        $this->load->library('mymemcached'); 
         $this->load->helper('form');
         $this->load->helper('url');
-	}
+        $this->load->driver('cache', array('adapter' => 'memcached'));
+}
 
     public function create()
     {
         $this->form_validation->set_rules('username', '名前', 'required');
-	    $this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|callback_email_check');
-	    $this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');        
+$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|callback_email_check');
+$this->form_validation->set_rules('password', 'パスワード', 'required|alpha_dash');
 
         if ($this->session->userdata('username') !== FALSE) {
             redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
@@ -25,9 +27,9 @@ class News extends CI_Controller
         $email = $this->input->post('email');
         $username = $this->input->post('username');
 
-	    if ($this->form_validation->run() === FALSE) {
-		    return $this->load->view('news/create');
-	    }
+if ($this->form_validation->run() === FALSE) {
+return $this->load->view('news/create');
+}
 
         $result = $this->user_model->mail_check($email);
 
@@ -42,23 +44,21 @@ class News extends CI_Controller
             'password' => $this->encrypt->encode($typed_password),
             'register_date' => date("Y-m-d H:i:s")
         );
-	    $this->user_model->make_new_account($data);
-	    $cookie = $this->user_model->get_cookie($email);
+$this->user_model->make_new_account($data);
+$cookie = $this->user_model->get_cookie($email);
         $this->session->set_userdata($cookie);
-	    redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
+redirect('http://vagrant-codeigniter.local/index.php/tweet', 'refresh');
     }
 
     /*新規登録時に入力したemailの重複チェックのメソッド*/
     public function email_check($email)
-	{
-		$exists = $this->user_model->mail_check($email);
-		if ($exists) {
-			$this->form_validation->set_message('email_check', '入力されたメールアドレスは既に使われております。');
-			return TRUE;
-		} else {
-			return FALSE;
-		}	
-	}
+{
+$exists = $this->user_model->mail_check($email);
+if ($exists) {
+$this->form_validation->set_message('email_check', '入力されたメールアドレスは既に使われております。');
+return TRUE;
+} else {
+return FALSE;
+}   
 }
-
-
+}
