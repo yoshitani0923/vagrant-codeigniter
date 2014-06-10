@@ -16,28 +16,6 @@ class Mymemcached {
     	$this->cache = $CI->cache;
     }
 
-    public function test($namespace, $key = null)
-    {
-        $b = $this->get('1:0:10');
-        $d = $this->get('1:0:20');
-        $c = $this->get('1:1:10');
-        $a = $this->get('1:1:20');
-        $e = $this->get('1:1:21');
-        $f = $this->get('1:0:30');
-        $g = $this->get('1:0:0');
-        $h = $this->cache->memcached->get($namespace);
-
-        var_dump($b);
-        var_dump($d);
-        var_dump($c);
-        var_dump($a);
-        var_dump($e);
-        var_dump($f);
-        var_dump($g);
-        echo 'user_idでデータ取得した結果→→→→→→→→→→→→→→→';
-        var_dump($h);
-    }
-
     public function loadCache($namespace, $key)
     {
         $keyName = $this->creatCacheKey($namespace, $key);

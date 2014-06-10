@@ -14,20 +14,6 @@ class Tweet extends CI_Controller {
         $this->load->driver('cache', array('adapter' => 'memcached'));
     }
 
-    public function loadcache()
-    {
-        $namespace = $this->session->userdata('username');
-        $key = '10';
-        $data = $this->mymemcached->loadCache($namespace, $key);
-        echo $data;
-    }
-
-    public function test()
-    {
-        $user_id = $this->session->userdata('user_id');
-        $this->mymemcached->test($user_id);
-    }
-
     public function index()
     {
         $user_id = $this->session->userdata('user_id');
@@ -37,20 +23,14 @@ class Tweet extends CI_Controller {
             $key = 0;
         }
         $this->cache->save($user_id, $key);
-        echo '$key→→→';
-        var_dump($key);
         //memcachedにデータがあれば / なければ
         if($this->mymemcached->loadCache($user_id, $key) !== FALSE) {
             $result = $this->mymemcached->loadCache($user_id, $key);
-            echo '成功';
-            var_dump($result);
         } else {
             $result = $this->tweet_model->news($user_id);
             $keyName = $this->mymemcached->creatCacheKey($user_id, $key);
             $this->cache->save($keyName, $result);
-            echo '失敗';
         }
-        var_dump($result);
 
         $this->form_validation->set_rules('tweet', 'ツイート内容', 'required|max_length[140]');
         
