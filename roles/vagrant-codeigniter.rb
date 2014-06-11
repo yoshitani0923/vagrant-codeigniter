@@ -8,6 +8,5 @@ run_list(
   "vagrant-codeigniter::db",
   "vagrant-codeigniter::web",
   "vagrant-codeigniter::php",
-  "memcached",
-  "pecl"
+  "memcached"
   )
