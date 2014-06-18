@@ -1,0 +1,4 @@
+1 "http://vagrant-codeigniter.local/index.php/news/create"
+2 "http://vagrant-codeigniter.local/index.php/news/create"
+3 "http://vagrant-codeigniter.local/index.php/news/create"
+新規登録ページアクセス数 ＝ 3

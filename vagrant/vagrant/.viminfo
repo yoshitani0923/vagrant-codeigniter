@@ -1,0 +1,468 @@
+# この viminfo ファイルは Vim 7.0 によって生成されました.
+# 変更する際には十分注意してください!
+
+# このファイルが書かれた時の 'encoding' の値
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# 最後の 検索パターン:
+~MSle0~/wq
+
+# 最後に置換された文字列:
+$
+
+# コマンドライン 項目の履歴 (新しいものから古いものへ):
+:q
+:wq
+:q!
+:Q
+:w
+:WQ
+:wqq
+:help
+
+# 検索文字列 項目の履歴 (新しいものから古いものへ):
+?/wq
+? \<cat\>
+?/Jun/2014:11:43:23 +0900] "POST /index.php/tweet/new_tweet HTTP/1.     1" 200 102 "http://vagrant-codeigniter.local/index.php/tweet" "Mozilla/5.0 (Macintos     h; Intel Mac OS X 10.9; rv:29.0) Gecko/20100101 Firefox/29.0":q
+? ^\d\{3}ÿ
+
+# 式 項目の履歴 (新しいものから古いものへ):
+
+# 入力行 項目の履歴 (新しいものから古いものへ):
+
+# 入力行 項目の履歴 (新しいものから古いものへ):
+
+# レジスタ:
+"0	LINE	0
+	******************************
+"1	LINE	0
+	close(SDML); 
+"2	LINE	0
+	# sendmail コマンド閉じる
+"3	LINE	0
+	print SDML "$msg";
+"4	LINE	0
+	# メール本文出力
+"5	LINE	0
+	print SDML "Content-Type: text/plain;\n\n";
+"6	LINE	0
+	print SDML "Content-Transfer-Encoding: 7bit\n";
+"7	LINE	0
+	print SDML "Subject: $subject\n";
+"8	LINE	0
+	print SDML "Cc: $cc\n";
+"9	LINE	0
+	print SDML "To: $to\n";
+""-	CHAR	0
+	a
+
+# ファイルマーク:
+'0  1  0  /usr/sbin/postfix
+'1  1  0  /var/log/yum.log
+'2  1  0  /var/log/mail/statistics
+'3  708  4  /etc/postfix/main.cf
+'4  1  0  /usr/sbin/sendmail.sendmail
+'5  26  39  /etc/mail/sendmail.mc
+'6  108  6  ~/sort.txt
+'7  180  0  ~/sort.txt
+'8  12  3  ~/mail.sh
+'9  11  0  ~/mail.sh
+
+# ジャンプリスト (新しいものが先):
+-'  1  0  /usr/sbin/postfix
+-'  1  0  /var/log/yum.log
+-'  1  0  /var/log/mail/statistics
+-'  708  4  /etc/postfix/main.cf
+-'  1  0  /usr/sbin/sendmail.sendmail
+-'  26  39  /etc/mail/sendmail.mc
+-'  1  0  /etc/mail/sendmail.mc
+-'  694  17  /etc/postfix/main.cf
+-'  672  0  /etc/postfix/main.cf
+-'  668  0  /etc/postfix/main.cf
+-'  663  0  /etc/postfix/main.cf
+-'  659  0  /etc/postfix/main.cf
+-'  655  0  /etc/postfix/main.cf
+-'  649  0  /etc/postfix/main.cf
+-'  644  0  /etc/postfix/main.cf
+-'  639  0  /etc/postfix/main.cf
+-'  630  0  /etc/postfix/main.cf
+-'  611  0  /etc/postfix/main.cf
+-'  600  0  /etc/postfix/main.cf
+-'  591  0  /etc/postfix/main.cf
+-'  583  0  /etc/postfix/main.cf
+-'  580  0  /etc/postfix/main.cf
+-'  566  0  /etc/postfix/main.cf
+-'  553  0  /etc/postfix/main.cf
+-'  540  0  /etc/postfix/main.cf
+-'  528  0  /etc/postfix/main.cf
+-'  500  0  /etc/postfix/main.cf
+-'  483  0  /etc/postfix/main.cf
+-'  467  0  /etc/postfix/main.cf
+-'  451  29  /etc/postfix/main.cf
+-'  450  63  /etc/postfix/main.cf
+-'  448  0  /etc/postfix/main.cf
+-'  445  54  /etc/postfix/main.cf
+-'  444  0  /etc/postfix/main.cf
+-'  443  0  /etc/postfix/main.cf
+-'  440  0  /etc/postfix/main.cf
+-'  437  0  /etc/postfix/main.cf
+-'  436  30  /etc/postfix/main.cf
+-'  434  0  /etc/postfix/main.cf
+-'  432  58  /etc/postfix/main.cf
+-'  430  0  /etc/postfix/main.cf
+-'  426  0  /etc/postfix/main.cf
+-'  425  0  /etc/postfix/main.cf
+-'  423  46  /etc/postfix/main.cf
+-'  422  0  /etc/postfix/main.cf
+-'  421  0  /etc/postfix/main.cf
+-'  418  0  /etc/postfix/main.cf
+-'  416  33  /etc/postfix/main.cf
+-'  411  0  /etc/postfix/main.cf
+-'  409  59  /etc/postfix/main.cf
+-'  408  52  /etc/postfix/main.cf
+-'  405  0  /etc/postfix/main.cf
+-'  404  0  /etc/postfix/main.cf
+-'  402  0  /etc/postfix/main.cf
+-'  400  0  /etc/postfix/main.cf
+-'  397  48  /etc/postfix/main.cf
+-'  394  0  /etc/postfix/main.cf
+-'  393  0  /etc/postfix/main.cf
+-'  391  0  /etc/postfix/main.cf
+-'  1  0  /etc/postfix/main.cf
+-'  108  6  ~/sort.txt
+-'  180  6  ~/sort.txt
+-'  1  4  ~/sort.txt
+-'  12  3  ~/mail.sh
+-'  11  0  ~/mail.sh
+-'  15  0  ~/mail.sh
+-'  1  0  ~/mail.sh
+-'  2  15  ~/a.sh
+-'  1  0  ~/a.sh
+-'  1  0  /home/vmail/.bashrc
+-'  6  0  ~/access.awk
+-'  3  4  ~/access.awk
+-'  9  0  ~/access.awk
+-'  3  0  ~/access.sh
+-'  5  0  ~/tweet.awk
+-'  10  11  ~/access.awk
+-'  6  0  ~/sample.sh
+-'  5  0  ~/news.awk
+-'  1  0  ~/news.txt
+-'  4  0  ~/news.awk
+-'  5  52  ~/login.awk
+-'  4  0  ~/login.awk
+-'  4  0  ~/tweet.awk
+-'  1  0  ~/tweet.awk
+-'  6  0  ~/tweet.awk
+-'  1  14  ~/sample.sh
+-'  4  0  ~/sample.sh
+-'  2  0  ~/sample.sh
+-'  1  0  ~/news.awk
+-'  6  0  ~/login.awk
+-'  3  4  ~/login.awk
+-'  1  0  ~/login.awk
+-'  4  39  ~/myscript.awk
+-'  21  0  ~/login.txt
+-'  1  0  ~/login.txt
+-'  61  0  ~/login.txt
+-'  3  0  ~/postinstall.sh
+-'  1  0  ~/new.txt
+-'  8  0  /home/vmail
+
+# ファイル内マークの履歴 (新しいものから古いもの):
+
+> /usr/sbin/postfix
+	"	1	0
+
+> /var/log/yum.log
+	"	1	0
+	^	1	1
+	.	1	1
+	+	1	1
+
+> /etc/postfix/main.cf
+	"	708	4
+	^	708	48
+	.	708	48
+	+	708	48
+
+> /usr/sbin/sendmail.sendmail
+	"	1	0
+
+> /etc/mail/sendmail.mc
+	"	26	39
+	^	26	40
+	.	26	40
+	+	26	40
+
+> ~/sort.txt
+	"	108	6
+
+> ~/access.sh
+	"	1	0
+	^	1	63
+	.	1	0
+	+	1	62
+	+	2	15
+	+	1	0
+
+> ~/mail.sh
+	"	12	3
+	^	15	0
+	.	11	0
+	+	1	8
+	+	1	27
+	+	1	25
+	+	1	15
+	+	1	60
+	+	1	0
+	+	1	11
+	+	1	30
+	+	1	29
+	+	1	24
+	+	1	18
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	27
+	+	1	52
+	+	1	9
+	+	16	0
+	+	4	27
+	+	11	0
+
+> /usr/sbin/sendmail.postfix
+	"	1	0
+
+> /usr/sbin/sendmail
+	"	1	0
+
+> ~/a.sh
+	"	2	15
+	^	2	16
+	.	2	0
+	+	2	0
+
+> /home/vmail/.bashrc
+	"	1	0
+
+> ~/access.awk
+	"	6	0
+	^	9	188
+	.	9	187
+	+	1	1
+	+	5	0
+	+	10	0
+	+	2	0
+	+	3	0
+	+	4	0
+	+	3	13
+	+	4	14
+	+	10	0
+	+	6	0
+	+	7	0
+	+	8	0
+	+	6	26
+	+	7	26
+	+	8	39
+	+	7	39
+	+	6	38
+	+	7	37
+	+	6	11
+	+	7	35
+	+	3	15
+	+	9	71
+	+	9	143
+	+	9	198
+	+	9	71
+	+	9	132
+	+	9	71
+	+	10	0
+	+	9	187
+
+> ~/access_count.txt
+	"	1	0
+
+> ~/tweet.awk
+	"	5	0
+	^	5	62
+	.	5	52
+	+	1	7
+	+	2	20
+	+	4	52
+	+	6	0
+	+	4	0
+	+	5	52
+
+> ~/sample.sh
+	"	6	0
+	^	4	39
+	.	6	0
+	+	1	62
+	+	2	34
+	+	1	8
+	+	1	66
+	+	1	70
+	+	1	7
+	+	2	0
+	+	1	0
+	+	2	34
+	+	8	0
+	+	2	32
+	+	1	0
+	+	2	0
+	+	8	13
+	+	8	52
+	+	8	4
+	+	8	4
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	3
+	+	8	0
+	+	8	0
+	+	8	1
+	+	8	1
+	+	8	1
+	+	8	1
+	+	8	1
+	+	8	1
+	+	8	1
+	+	8	4
+	+	8	4
+	+	8	4
+	+	8	29
+	+	8	34
+	+	8	20
+	+	8	0
+	+	2	0
+	+	1	0
+	+	2	37
+	+	8	13
+	+	8	0
+	+	1	1
+	+	2	7
+	+	8	0
+	+	2	11
+	+	8	36
+	+	8	24
+	+	1	0
+	+	2	0
+	+	8	0
+	+	8	0
+	+	8	0
+	+	3	0
+	+	4	0
+	+	8	0
+	+	8	0
+	+	8	0
+	+	8	0
+	+	8	0
+	+	8	8
+	+	4	11
+	+	8	0
+	+	6	0
+
+> ~/news.awk
+	"	5	0
+	^	5	27
+	.	5	21
+	+	3	9
+	+	1	3
+	+	2	3
+	+	2	17
+	+	3	5
+	+	2	19
+	+	4	32
+	+	5	21
+
+> ~/news.txt
+	"	1	0
+
+> ~/login.awk
+	"	5	52
+	^	5	53
+	.	5	52
+	+	1	0
+	+	2	0
+	+	3	0
+	+	2	13
+	+	4	48
+	+	4	32
+	+	4	20
+	+	4	35
+	+	6	4
+	+	6	3
+	+	6	0
+	+	6	10
+	+	2	14
+	+	4	38
+	+	3	18
+	+	6	29
+	+	6	8
+	+	6	0
+	+	6	0
+	+	6	0
+	+	6	0
+	+	6	0
+	+	6	0
+	+	6	0
+	+	6	0
+	+	3	0
+	+	6	0
+	+	4	29
+	+	5	52
+
+> ~/myscript.awk
+	"	4	39
+	^	4	24
+	.	4	39
+	+	3	26
+	+	1	3
+	+	2	3
+	+	3	4
+	+	3	22
+	+	1	0
+	+	2	0
+	+	3	0
+	+	3	22
+	+	3	0
+	+	2	0
+	+	1	0
+	+	3	12
+	+	5	0
+	+	3	6
+	+	3	7
+	+	1	0
+	+	2	0
+	+	3	0
+	+	3	7
+	+	3	7
+	+	4	68
+	+	4	74
+	+	5	0
+	+	4	75
+	+	5	0
+	+	4	74
+	+	4	74
+	+	4	74
+	+	5	0
+	+	5	0
+	+	4	92
+	+	4	94
+	+	5	0
+	+	4	95
+	+	5	0
+	+	4	100
+	+	4	124
+	+	4	115
+	+	4	39
