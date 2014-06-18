@@ -8,8 +8,8 @@ address="yoshitani@realworld.jp"
 subject="`date`"
 
 #アクセスログから上位３件取得
-sudo cat /var/log/httpd/vagrant-codeigniter-access_log | awk -F ' ' '{print $7}' | sort | uniq -c > /vagrant/vagrant/count.txt
-message=$(sudo cat /vagrant/vagrant/count.txt | awk -F ' ' '{ print $0 }' | sort -k 1 -n -r | head -n 3)
+sudo cat /var/log/httpd/vagrant-codeigniter-access_log | awk -F ' ' '{print $7}' | sort | uniq -c > /vagrant/count.txt
+message=$(sudo cat /vagrant/count.txt | awk -F ' ' '{ print $0 }' | sort -k 1 -n -r | head -n 3)
 
 #メール送信
 mail -s "$subject" $address << mailbody
